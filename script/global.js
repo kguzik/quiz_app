@@ -17,8 +17,22 @@ function changeQuestion() {
         }
     }
 
+    let timeoutHandle;
+
+    function timer() {
+        window.clearTimeout(timeoutHandle);
+        timeoutHandle = setTimeout(
+            function () {
+                let currentQuestion = document.getElementById('current-question');
+                currentQuestion.click();
+            }, 20000);
+    }
+
+    timer();
+
     for (let i = 0; i < buttonNext.length; i++) {
         buttonNext[i].addEventListener('click', function () {
+            window.clearTimeout(timeoutHandle);
             if (i + 1 === buttonNext.length - 1) {
                 submit.style.display = 'block';
                 this.parentNode.style.display = 'none';
@@ -30,6 +44,7 @@ function changeQuestion() {
             this.removeAttribute('id');
             buttonNext[i + 1].parentNode.style.display = 'block';
             buttonNext[i + 1].setAttribute('id', 'current-question');
+            timer();
         });
     }
 }
