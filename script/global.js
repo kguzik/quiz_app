@@ -25,7 +25,7 @@ function changeQuestion() {
             function () {
                 let currentQuestion = document.getElementById('current-question');
                 currentQuestion.click();
-            }, 20000);
+            }, 10000);
     }
 
     timer();
@@ -38,7 +38,10 @@ function changeQuestion() {
                 this.parentNode.style.display = 'none';
                 buttonNext[i + 1].parentNode.style.display = 'block';
                 buttonNext[i + 1].style.display = 'none';
-                return;
+                setTimeout(
+                    function () {
+                        submit.click();
+                    }, 10000);
             }
             this.parentNode.style.display = 'none';
             this.removeAttribute('id');
